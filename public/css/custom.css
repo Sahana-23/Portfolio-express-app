@@ -1,0 +1,168 @@
+html {
+    scroll-behavior: smooth;
+  }
+  
+body{
+    font-family: 'Raleway', sans-serif;
+}
+/*---COMPONENTS--- */
+  
+/* Headings */
+h1,h2,h3,h4,h5,h6{
+    color: #3b434a;
+}
+/* Card */
+.card{
+    transition: transform 1s ;
+}
+
+.card:hover{
+transform: scale(1.02);
+  box-shadow: 10px 10px 15px rgba(0,0,0,0.1);
+}
+.card img{
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* buttons */
+.btn-info{
+    background-color:rgb(17,39,54);
+    border-color:rgba(17,39,54)
+}
+
+a[role='button'].t-wh{
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+}
+
+a[role='button'].t-wh:hover{
+    color:white;
+    background: rgba(17,39,54,0.5);
+    border: 1px solid white;
+}
+
+/* NavBar */
+.navbar{
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.nav-item .nav-link{
+    text-transform: uppercase;
+}
+/* Scroll to top button */
+.back-to-top {
+    background: #f3a200;
+    position: fixed;
+    bottom: 16px;
+    right:16px;
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:32px;
+    color:#1f1f1f;
+    text-decoration: none;
+    opacity:0;
+    pointer-events: none;
+    transition: all .4s;
+  }
+  
+  .back-to-top:hover {
+  background: #ffc550;
+  color: #fff;
+  text-decoration: none;
+}
+  .back-to-top.active {
+    bottom:32px;
+    pointer-events: auto;
+    opacity:1;
+  }
+
+/* ----Home Page---- */
+/* Jumbotron */
+.jumbotron{
+    font-family: 'Lora', serif ;
+    border-radius:0;
+    background: url('/img/bg3.jpg') no-repeat center center; 
+    background-size: cover;
+    background-color: rgba(17,39,54,0.5);
+    padding-top: 10%;
+    padding-bottom: 10%;
+    color:white;
+}
+.jumbotron h1,#about h1{
+    color:white;
+}
+.jumbotron hr{
+    border:3px solid white;
+    margin-left: 0;
+    width: 75%;
+}
+
+/* about */
+#about{
+    background-color:rgba(17,39,54) ;
+    }
+    
+#about .container{
+        color: white;
+    }
+
+#about .card{
+ background: none;
+ text-align: center;
+ border: 1px solid white;   
+}
+
+#about .card h4{
+color: white;
+}
+
+#about a[role='button']:hover{
+    background: rgba(255,255,255,0.2);
+}
+
+/* Projects page */
+
+.filter button{
+  padding: 7px 10px;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+
+.filter button:hover,.filter button.active{
+    color: #f3a200;
+    border-color: #ffb727;
+}
+
+.filter button:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.projects a{
+    padding:10px;
+    color: #f3a200;
+    border:1px solid #f3a200;
+}
+.projects .card:hover{
+    transform: none;
+}
+
+/* carousel */
+/* .carousel{
+    width:600px;
+    height: 420px;
+}
+
+.carousel-inner img {
+    width: 600px;
+    height: 420px;
+} */

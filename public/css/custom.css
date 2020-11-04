@@ -6,7 +6,9 @@ body{
     font-family: 'Raleway', sans-serif;
     font-size: 0.9375rem;
 }
-
+.bg{
+background-color: #FBEEC1;
+}
 main{
 min-height: 90vh;
 }
@@ -170,15 +172,11 @@ color: white;
 }
 
 /* carousel */
-/* .carousel{
-    width:600px;
-    height: 420px;
-}
 
-.carousel-inner img {
-    width: 600px;
-    height: 420px;
-} */
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
 
 /* Sign in */
 .bg{

@@ -12,7 +12,7 @@ window.addEventListener("scroll", () => {
 // Project filter grid
 $grid = $('.projects').isotope({
     itemSelector: '.project-item',
-    layoutMode: 'fitRows'
+    layoutMode: 'masonry'
 });
 
 $('.filter button').on('click', function () {

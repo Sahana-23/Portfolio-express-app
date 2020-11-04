@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        Sahana Hegde
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+        aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/projects">Projects
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/resume">Resume</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+<div class="container pt-5">
+    <h1 class="text-center font-weight-bold "><i class="fas fa-th-large pr-3"></i>PROJECTS</h1>
+    <hr class="w-25 mb-4">
+    <div class="filter d-flex justify-content-center mb-4">
+        <button data-filter='*' class='btn mx-2 active'>All</button>
+        <button data-filter='.MERN' class='btn mx-2'>MERN</button>
+        <button data-filter='.React' class='btn mx-2'>React</button>
+        <button data-filter='.JS' class='btn mx-2'>JS</button>
+    </div>
+    <div class="row projects">
+        {{#each projects}}
+        <div class="col-sm-4 mb-4 project-item {{#each this.filter}}{{this}} {{/each}}">
+            <div class="card">
+                <img src="{{this.coverImageUrl}}" class="card-img-top" alt='..'>
+                <div class="card-body">
+                    <h4 class="card-title font-weight-bold">{{this.name}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">{{this.subheading}}</h6>
+                    <p class="card-text">{{this.description}}</p>
+                    <a href="/projects/{{this.alias}}" class="card-link btn btn-sm p-1"><i
+                            class="fas fa-info-circle pr-2"></i>Details</a>
+                    <a href="{{this.githubUrl}}" class="card-link btn btn-sm p-1"><i
+                            class="fab fa-github pr-2"></i>GitHub</a>
+
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

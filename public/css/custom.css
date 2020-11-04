@@ -4,6 +4,7 @@ html {
   
 body{
     font-family: 'Raleway', sans-serif;
+    font-size: 0.9375rem;
 }
 
 main{
@@ -31,7 +32,7 @@ transform: scale(1.02);
 }
 
 /* buttons */
-.btn-info{
+.btn-custom-primary{
     background-color:rgb(17,39,54);
     border-color:rgba(17,39,54)
 }
@@ -74,6 +75,7 @@ a[role='button'].t-wh:hover{
     opacity:0;
     pointer-events: none;
     transition: all .4s;
+    z-index: 999    ;
   }
   
   .back-to-top:hover {
@@ -86,6 +88,15 @@ a[role='button'].t-wh:hover{
     pointer-events: auto;
     opacity:1;
   }
+
+/* breadcrumb */
+
+.breadcrumb{
+    background: none;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+}
 
 /* ----Home Page---- */
 /* Jumbotron */
@@ -113,7 +124,7 @@ a[role='button'].t-wh:hover{
     background-color:rgba(17,39,54) ;
     }
     
-#about .container{
+#about .container-fluid{
         color: white;
     }
 
@@ -176,4 +187,9 @@ color: white;
 .signIn-container{
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+}
+
+/* Uploaded icon color*/
+.success-icon{
+    color:#155724
 }

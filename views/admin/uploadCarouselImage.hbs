@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        Sahana Hegde
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+        aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/projects">Projects
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/projects/projectDetails/upload/resume">Resume</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+<ol class="breadcrumb mb-0">
+    <li class="breadcrumb-item"><a href="/admin/projects">Projects</a></li>
+    <li class="breadcrumb-item"><a href="/admin//projects/projectDetails/{{project.alias}}">{{project.name}}</a></li>
+    <li class="breadcrumb-item active ">Upload carousel images</li>
+</ol>
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-2">
+        <h1 class="h2">Upload Images</h1>
+    </div>
+    {{#if message}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle pr-3"></i>{{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
+
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="/admin/projects/projectDetails/upload/carouselImage/{{project.alias}}"
+                enctype="multipart/form-data" method="POST">
+                <div class="form-group">
+                    <input type="file" class="form-control-file" name="carouselImageUrl" id="carouselImageUrl" multiple>
+                    <label for="carouselImageUrl"></label>
+                    <button type="submit" class="btn btn-info btn-custom-primary my-3">Upload</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-8 ">
+            {{#if project.carouselUrl}}
+            <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel">
+                <div class="carousel-inner">
+                    {{#each project.carouselUrl}}
+                    <div class="carousel-item {{#if @first}}active{{/if}}">
+                        <img src="{{this}}" class="d-block w-100 " alt="...">
+                    </div>
+                    {{/each}}
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

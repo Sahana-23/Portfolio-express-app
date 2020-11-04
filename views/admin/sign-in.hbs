@@ -1,16 +1,19 @@
 <div class="container-fluid bg ">
     <div class="row justify-content-center">
         <div class="col-12 col-md-4">
-            <form class="signIn-container pt-4 pb-5 px-4 my-5 text-center">
+            <form action="/admin" method="POST" class="signIn-container pt-4 pb-5 px-4 my-5 text-center">
                 <img src="/img/logo.png" alt="logo" height="72" class="mb-3">
                 <h3 class="mb-3">Please sign in</h3>
+                {{#if message}}<p class="alert alert-danger">{{message}}</p>{{/if}}
                 <div class="form-group">
-                    <input type="email" class="form-control" id="email" placeholder="Email address" required>
+                    <input name="email" type="email" class="form-control" id="email" placeholder="Email address"
+                        required>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="password" placeholder="Password" required>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Password"
+                        required>
                 </div>
-                <button type="submit" class="btn btn-info btn-block">Submit</button>
+                <button type="submit" class="btn btn-info btn-custom-primary btn-block">Submit</button>
             </form>
         </div>
     </div>

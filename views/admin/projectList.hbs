@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        Sahana Hegde
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+        aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/projects/projectDetails/upload/resume">Resume</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1 class="h2">Projects</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <a type="button" class="btn btn-sm btn-outline-secondary" href="/admin/projects/newProject">
+                <i class="fas fa-plus-circle"></i> Create New
+            </a>
+        </div>
+    </div>
+
+    {{#if message}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle pr-3"></i>{{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-sm text-center">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Demo</th>
+                    <th>Github</th>
+                    <th>Cover Image</th>
+                    <th>Carasoul Images</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each projects}}
+                <tr>
+                    <td class="text-left"><a href=" /admin/projects/projectDetails/{{this.alias}}">{{this.name}}</a>
+                    </td>
+                    <td>{{this.subheading}}</td>
+                    <td><a href="{{this.demoUrl}}">{{this.demoUrl}}</a></td>
+                    <td><a href="{{this.githubUrl}}">{{this.githubUrl}}</a></td>
+                    <td>
+                        {{#if this.coverImageUrl}}
+                        <i class="fas fa-check-circle pr-2 success-icon"></i>Uploaded
+                        {{else}}
+                        <i class="fas fa-times-circle "></i>
+                        {{/if}}
+                    </td>
+                    <td>
+                        {{#if this.carouselUrl}}
+                        <i class="fas fa-check-circle pr-2 success-icon"></i>Uploaded
+                        {{else}}
+                        <i class="fas fa-times-circle "></i>
+                        {{/if}}
+                    </td>
+                    </td>
+                    <td><a href="/admin/project/delete/{{this.alias}}"><i class="fas fa-trash"></i></a></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</div>

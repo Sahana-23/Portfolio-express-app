@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        Sahana Hegde
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+        aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/projects">Projects
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Resume</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center my-2">
+        <h1 class="h2">Upload Resume</h1>
+    </div>
+
+    {{#if message}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle pr-3"></i>{{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
+
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="/admin/projects/projectDetails/upload/resume" enctype="multipart/form-data" method="POST">
+                <div class="form-group">
+                    <input type="file" class="form-control-file" name="resume" id="resume">
+                    <label for="resume"></label>
+                    <button type="submit" class="btn btn-info btn-custom-primary my-3">Upload</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-8 ">
+            <iframe src="https://portfolio-app-uploads.s3.ap-south-1.amazonaws.com/resume/resume.pdf" width="100%"
+                height="500px">
+            </iframe>
+        </div>
+    </div>
+</div>

@@ -1,13 +1,19 @@
 const express = require('express')
 const app = express()
 const hbs = require('hbs')
+require('dotenv').config()
 
 const middlewares = require('./middlewares/appMiddlewares')
+const { connectDB } = require('./config/db')
+connectDB()
 
 const indexRoutes = require('./routes/indexRoutes')
 const adminRoutes = require('./routes/adminRoutes')
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 app.use(express.static(__dirname + "/public"))
+
 app.set('views', __dirname + "/views")
 app.set('view engine', 'hbs')
 hbs.registerPartials(__dirname + "/views/partials")

@@ -1,0 +1,100 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        Sahana Hegde
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+        aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/projects">Projects
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/projects/projectDetails/upload/resume">Resume</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+<ol class="breadcrumb mb-0">
+    <li class="breadcrumb-item"><a href="/admin/projects">Projects</a></li>
+    <li class="breadcrumb-item active">New Project</li>
+</ol>
+
+{{#if message}}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="fas fa-check-circle pr-3"></i>{{message}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{{/if}}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center   mb-2">
+        <h1 class="h2">Create New Project</h1>
+    </div>
+    <form action="/admin/projects/newProject" method="POST">
+        <div class="form-row">
+            <div class="form-group col-md-6 px-3">
+                <label for="name">Name</label>
+                <input type="text" name="name" class="form-control" id="name">
+            </div>
+            <div class="form-group col-md-6 px-3">
+                <label for="alias">Alias</label>
+                <input type="text" name="alias" class="form-control" id="alias" readonly>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6 px-3">
+                <label for="github">Github</label>
+                <input type="text" name="githubUrl" class="form-control" id="github">
+            </div>
+            <div class="form-group col-md-6 px-3">
+                <label for="liveDemo">Live Demo</label>
+                <input type="text" name="demoUrl" class="form-control" id="liveDemo">
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6 px-3">
+                <label for="subheading">Sub-Heading</label>
+                <textarea type="text" name="subheading" class="form-control" id="subheading"></textarea>
+            </div>
+            <div class="form-group col-md-6 px-3">
+                <label for="description">Description</label>
+                <textarea type="text" name="description" class="form-control" id="description"></textarea>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6 px-3">
+                <label for="tags">Filter Tags</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="filter" value="MERN" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        MERN stack
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="filter" value="React" id="defaultCheck2">
+                    <label class="form-check-label" for="defaultCheck2">
+                        React
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="filter" value="JS" id="defaultCheck3">
+                    <label class="form-check-label" for="defaultCheck3">
+                        JavaScript
+                    </label>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info btn-custom-primary ml-3">Create</button>
+    </form>
+</div>
+</div>

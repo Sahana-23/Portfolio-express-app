@@ -1,11 +1,21 @@
 const express = require('express')
 const app = express()
 const hbs = require('hbs')
+const session = require('express-session')
 require('dotenv').config()
 
 const middlewares = require('./middlewares/appMiddlewares')
 const { connectDB } = require('./config/db')
 connectDB()
+
+app.use(session({
+    secret: process.env.APP_SECRET_KEY,
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        maxAge: 10000000
+    }
+}));
 
 const indexRoutes = require('./routes/indexRoutes')
 const adminRoutes = require('./routes/adminRoutes')

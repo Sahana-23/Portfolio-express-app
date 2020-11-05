@@ -21,3 +21,11 @@ module.exports.handleError = function (err, req, res, next) {
         message: 'Sorry, an error has occured, Please try again later!'
     })
 }
+
+module.exports.authenticate = function (req, res, next) {
+    if (req.session.isLoggedIn) {
+        next()
+    } else {
+        res.redirect('/admin')
+    }
+}

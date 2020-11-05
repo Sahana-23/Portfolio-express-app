@@ -2,6 +2,8 @@ const router = require('express').Router()
 const asyncHandler = require('express-async-handler')
 const uploadRoutes = require('./uploadRoutes')
 
+const middleware = require('../middlewares/appMiddlewares')
+
 const User = require('../models/userModel')
 const Project = require('../models/projectModel')
 
@@ -15,6 +17,7 @@ router.route('/')
     .post(asyncHandler(async (req, res) => {
         var user = await User.findOne({ email: req.body.email, password: req.body.password })
         if (user) {
+            req.session.isLoggedIn = true
             res.redirect('admin/projects')
         } else {
             res.render('admin/sign-in', {
@@ -25,7 +28,7 @@ router.route('/')
         }
     }))
 
-router.get('/projects', asyncHandler(async (req, res) => {
+router.get('/projects', middleware.authenticate, asyncHandler(async (req, res) => {
     let projects = await Project.find()
     if (projects) {
         res.render('admin/projectList', {
@@ -40,13 +43,13 @@ router.get('/projects', asyncHandler(async (req, res) => {
 }))
 
 router.route('/projects/newProject')
-    .get((req, res) => {
+    .get(middleware.authenticate, (req, res) => {
         res.render('admin/newProject', {
             layout: "layout",
             title: 'Admin | New Project'
         })
     })
-    .post(asyncHandler(async (req, res) => {
+    .post(middleware.authenticate, asyncHandler(async (req, res) => {
         req.body.alias = req.body.name.split(' ').join('-').toLowerCase();
 
         let projectDoc = new Project(req.body);
@@ -61,7 +64,7 @@ router.route('/projects/newProject')
     }))
 
 router.route('/projects/projectDetails/:alias')
-    .get(asyncHandler(async (req, res) => {
+    .get(middleware.authenticate, asyncHandler(async (req, res) => {
         let alias = req.params.alias
 
         let project = await Project.findOne({ alias: alias })
@@ -75,7 +78,7 @@ router.route('/projects/projectDetails/:alias')
             JSfilter: project.filter.includes('JS')
         })
     }))
-    .post(asyncHandler(async (req, res) => {
+    .post(middleware.authenticate, asyncHandler(async (req, res) => {
         let alias = req.body.alias
         req.body.alias = req.body.name.split(' ').join('-').toLowerCase();
         await Project.findOneAndUpdate({ alias: alias }, { $set: req.body })
@@ -93,9 +96,9 @@ router.route('/projects/projectDetails/:alias')
         })
     }))
 
-router.use('/projects/projectDetails/upload', uploadRoutes)
+router.use('/projects/projectDetails/upload', middleware.authenticate, uploadRoutes)
 
-router.get('/project/delete/:alias', asyncHandler(async (req, res) => {
+router.get('/project/delete/:alias', middleware.authenticate, asyncHandler(async (req, res) => {
     await Project.findOneAndDelete({ alias: req.params.alias })
     let projects = await Project.find()
     res.render('admin/projectList', {
@@ -106,5 +109,9 @@ router.get('/project/delete/:alias', asyncHandler(async (req, res) => {
     })
 }))
 
+router.get('/logOut', middleware.authenticate, (req, res) => {
+    res.session.isLoggedIn = false
+    res.redirect('/')
+})
 
 module.exports = router

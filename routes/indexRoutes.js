@@ -2,12 +2,16 @@ const router = require('express').Router()
 const asyncHandler = require('express-async-handler')
 const Project = require('../models/projectModel')
 
-router.get('/', (req, res) => {
+router.get('/', asyncHandler(async (req, res) => {
+    let project1 = await Project.findOne({ alias: 'proshop' })
+    let project2 = await Project.findOne({ alias: 'number-guessing-game' })
     res.render('index', {
         layout: "layout",
-        title: 'Sahana Hegde | Portfolio'
+        title: 'Sahana Hegde | Portfolio',
+        project1,
+        project2
     })
-})
+}))
 
 router.get('/projects', asyncHandler(async (req, res) => {
     let projects = await Project.find()
@@ -33,4 +37,5 @@ router.get('/projects/:alias', asyncHandler(async (req, res) => {
 router.get('/resume', (req, res) => {
     res.redirect('https://portfolio-app-uploads.s3.ap-south-1.amazonaws.com/resume/resume.pdf')
 })
+
 module.exports = router;

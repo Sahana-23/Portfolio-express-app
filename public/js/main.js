@@ -22,4 +22,13 @@ $('.filter button').on('click', function () {
     $grid.isotope({
         filter: $(this).data('filter')
     })
+
 })
+setTimeout(function () {
+    $('.projects').masonry({
+        itemSelector: '.project-item', // the grid item selector
+    }).masonry("layout");
+}, 100);
+
+// setTimeout(function () { $(".project-item").masonry().masonry("reloadItems"); }, 500);
+

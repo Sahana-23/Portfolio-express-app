@@ -110,7 +110,7 @@ router.get('/project/delete/:alias', middleware.authenticate, asyncHandler(async
 }))
 
 router.get('/logOut', middleware.authenticate, (req, res) => {
-    res.session.isLoggedIn = false
+    req.session.isLoggedIn = false
     res.redirect('/')
 })
 
